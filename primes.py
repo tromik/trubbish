@@ -11,12 +11,10 @@ def findPrime(i, n):
         prime = True
         while j < n:
             j = j + 1
-            # Do not count if the candidate is the same as the divisor
-            if i != j:
-                # if the remainder is 0 candidate is not a prime and can exit check
-                if i % j == 0:
-                    prime = False
-                    break
+            # if the remainder is 0 candidate is not a prime and can exit check
+            if i != j and i % j == 0:
+                prime = False
+                break
         # If the candidate comes out of the loop still prime increment the counter
         if prime is True:
             count = count + 1
