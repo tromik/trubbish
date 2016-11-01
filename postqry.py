@@ -110,4 +110,6 @@ for row in rows:
 
     print str(row['service_id']) + " | " + str(row['gl_account_name']) + " | " + str(debit_amount) + " | " + str(credit_amount) + " | " + str(modified_date) + " | " + case + " | " + str(row['type'])
 
+    
+
 conn.close()
