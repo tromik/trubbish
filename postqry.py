@@ -46,7 +46,7 @@ AND s."Paid_By" IN ('D-LO','Ldr','D-TO')
 AND (s."Expected_Cost_Currency" is not null OR s."Validated_Cost_Currency" is not null)
 AND (s."Expected_Cost_Local" > 0 OR s."Validated_Cost_Local" > 0)
 AND char_length(s."Invoice_Number") = 0
-AND b."Date_of_First_Travel" = current_date - interval '1 days'
+AND b."Date_of_First_Travel" = current_date - interval '2 days'
 AND coalesce(s."EntityID") = 2
 
 UNION ALL
@@ -84,7 +84,7 @@ AND s."Paid_By" IN ('D-LO','Ldr','D-TO')
 AND (s."Expected_Cost_Currency" is not null OR s."Validated_Cost_Currency" is not null)
 AND (s."Expected_Cost_Local" > 0 OR s."Validated_Cost_Local" > 0)
 AND char_length(s."Invoice_Number") = 0
-AND b."Date_of_First_Travel" = current_date - interval '1 days'
+AND b."Date_of_First_Travel" = current_date - interval '2 days'
 AND coalesce(s."EntityID") = 2
 Order By type, service_id, gl_account_name""")
 except:
