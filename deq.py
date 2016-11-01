@@ -1,6 +1,8 @@
 minv = 0
 maxv = 501
 
+# testing git
+
 def nuggets(minv, maxv):
     # import pdb; pdb.set_trace()
     for i in range(minv, maxv):
