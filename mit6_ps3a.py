@@ -18,9 +18,9 @@ i = 1
 def countSubStringMatchRecursive(target, key):
     if target.find(key) == -1:
         return []
-    keys = countSubStringMatchRecursive(target[target.find(key):], key)
-    for k in keys:
-        k = k + target.find(k)
+    keys = countSubStringMatchRecursive(target[target.find(key) + len(key):], key)
+    for k in range(0, len(keys)):
+        keys[k] = keys[k] + target.find(key) + len(key)
     return [target.find(key)] + keys
 
 # print str(countSubStringMatch(target, key))
