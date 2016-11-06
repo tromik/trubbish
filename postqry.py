@@ -7,7 +7,7 @@ env = 'dev'
 if env == 'prod':
     database_name = 'xyz'
     user_name = 'xyz'
-    pass_word = 'pervasive'
+    pass_word = 'xyz'
     host_name = 'xyz'
     port_num = '5432'
 else:
