@@ -27,9 +27,16 @@ def  constrainedMatchPair(firstMatch,secondMatch,length):
     for m1 in firstMatch:
         # print str(m1)
         for m2 in secondMatch:
+            mhold = m1
+            if m1 == 0 and m2 > 0:
+                m1 = m2 - length - 1
+            if m2 == 0 and m1 > 0:
+                m2 = m1 + length + 1
             # print str(m2)
+            # print 'Comparing: m1: ' + str(m1) + ' m2: ' +str(m2) + ' length: ' + str(length)
             if m2 == m1 + length + 1:
                 match_pos_list.append(m1)
+            m1 = mhold
     return match_pos_list
 
 def subStringMatchExact(target, key):
@@ -52,8 +59,14 @@ def subStringMatchOneSub(target,key):
         # miss picks location for missing element
         # key1 and key2 are substrings to match
         # import pdb; pdb.set_trace()
-        key1 = key[:miss]
-        key2 = key[miss+1:]
+        if len(key) > 1:
+            key1 = key[:miss]
+            key2 = key[miss+1:]
+        else:
+            # if the key is one character set key1 to the character and key2 to blank,
+            # this would work the same is key2 was the key and key1 was the blank
+            key1 = key
+            key2 = ''
         print 'breaking key',key,'into',key1,key2
         # match1 and match2 are tuples of locations of start of matches
         # for each substring in target
@@ -62,6 +75,7 @@ def subStringMatchOneSub(target,key):
         # when we get here, we have two tuples of start points
         # need to filter pairs to decide which are correct
         filtered = constrainedMatchPair(match1,match2,len(key1))
+        filtered = list(set(filtered))
         # allAnswers = allAnswers + filtered
         allAnswers.append(filtered)
         print 'match1: ',match1
@@ -70,7 +84,7 @@ def subStringMatchOneSub(target,key):
     return allAnswers
 
 # import pdb; pdb.set_trace()
-print str(subStringMatchOneSub(target1, key12))
+subStringMatchOneSub(target1, key13)
 
 # def subStringMatchOneSub(target, key):
 #     """search for all locations of key in target, with one substitution"""
