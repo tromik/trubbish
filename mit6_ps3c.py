@@ -28,13 +28,13 @@ def  constrainedMatchPair(firstMatch,secondMatch,length):
         # print str(m1)
         for m2 in secondMatch:
             mhold = m1
-            if m1 == 0 and m2 > 0:
+            if m1 == 0 and m2 > 0 and length == 0:
                 m1 = m2 - length - 1
             if m2 == 0 and m1 > 0:
                 m2 = m1 + length + 1
             # print str(m2)
             # print 'Comparing: m1: ' + str(m1) + ' m2: ' +str(m2) + ' length: ' + str(length)
-            if m2 == m1 + length + 1:
+            if m2 == m1 + length + 1 and m1 > -1:
                 match_pos_list.append(m1)
             m1 = mhold
     return match_pos_list
@@ -81,10 +81,11 @@ def subStringMatchOneSub(target,key):
         print 'match1: ',match1
         print 'match2: ',match2
         print 'possible matches for: ',key1,key2,'start at',filtered
+        print 'all possible matches:',allAnswers
     return allAnswers
 
 # import pdb; pdb.set_trace()
-subStringMatchOneSub(target1, key13)
+subStringMatchOneSub(target2, key13)
 
 # def subStringMatchOneSub(target, key):
 #     """search for all locations of key in target, with one substitution"""
