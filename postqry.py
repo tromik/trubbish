@@ -29,6 +29,8 @@ except psycopg2.OperationalError as e:
 # Open cursor with field names
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
+booking_doft_qry = '2016-11-21'
+
 sel_query = """select cast('Hotel' as varchar(50)) as type,
                 s."ServiceID" as service_id,
                 s."BookingNo" as booking_no,
@@ -99,7 +101,8 @@ sel_query = """select cast('Hotel' as varchar(50)) as type,
                 AND (s."Expected_Cost_Currency" is not null OR s."Validated_Cost_Currency" is not null)
                 AND (s."Expected_Cost_Local" > 0 OR s."Validated_Cost_Local" > 0)
                 AND char_length(s."Invoice_Number") = 0
-                AND b."Date_of_First_Travel" = current_date - interval '2 days'
+                --AND b."Date_of_First_Travel" = current_date - interval '2 days'
+                AND b."Date_of_First_Travel" = '""" + booking_doft_qry + """'
                 AND coalesce(s."EntityID") = 2
                 Order By type, service_id, gl_account_name"""
 
