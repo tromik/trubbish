@@ -3,7 +3,6 @@ import psycopg2.extras
 import datetime
 
 env = 'dev'
-
 if env == 'prod':
     database_name = 'xyz'
     user_name = 'xyz'
@@ -29,7 +28,6 @@ except psycopg2.OperationalError as e:
 trip_code = 'GAPCCCR170402-O1'
 
 def sql_select(trip_code):
-
     # Open cursor with field names
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
