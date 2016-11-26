@@ -10,10 +10,10 @@ if env == 'prod':
     host_name = 'xyz'
     port_num = '5432'
 else:
-    database_name = 'datamart'
-    user_name = 'datamart'
-    pass_word = 'pervasive'
-    host_name = 'TORFIN04'
+    database_name = 'xyz'
+    user_name = 'xyz'
+    pass_word = 'xyz'
+    host_name = 'xyz'
     port_num = '5432'
 
 # Connect to the database
