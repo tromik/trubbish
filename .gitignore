@@ -6,3 +6,7 @@ Lib/*
 Include/*
 *.log
 *.csv
+.DS_Store
+.Python
+.gitignore.swp
+bin/*
