@@ -10,24 +10,24 @@ if env == 'prod':
     host_name = 'xyz'
     port_num = '5432'
 else:
-    database_name = 'xyz'
-    user_name = 'xyz'
-    pass_word = 'xyz'
-    host_name = 'xyz'
+    database_name = 'datamart_20161127'
+    user_name = 'yield'
+    pass_word = 'Yield1'
+    host_name = 'TORFIN04'
     port_num = '5432'
 
 # Connect to the database
 try:
     conn = psycopg2.connect(database=database_name, user=user_name, password=pass_word, host=host_name, port=port_num)
-    print 'Connection successful...'
+    print 'Connection successful to database ' + database_name + ' on server ' + host_name
 except psycopg2.OperationalError as e:
     print('Unable to connect!\n{0}').format(e)
     print "I am unable to connect to the database. Host: " + host_name + "  Database: " + database_name
     sys.exit(1)
 
-trip_code = 'GAPCCCR170402-O1'
+trip_code = 'GAPJLM170628-O1'
 
-def sql_select(trip_code):
+def sql_select(trip_code=None):
     # Open cursor with field names
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
@@ -67,9 +67,12 @@ def sql_select(trip_code):
     rows = cur.fetchall()
     for row in rows:
 
+        total_val_usd = 0
+
         # Row-by-row processing occurrs here
         if (row['child_trip_code'] == trip_code):
-            print 'trip code: ' + row['child_trip_code'] + ' | expected_cost_usd: ' + str(row['expected_cost_usd']) + ' | validated_cost_usd: ' + str(row['validated_cost_usd'])
+            total_val_usd = total_val_usd + row['validated_cost_usd']
+            print 'trip code: ' + row['child_trip_code'] + ' | expected_cost_usd: ' + str(row['expected_cost_usd']) + ' | validated_cost_usd: ' + str(row['validated_cost_usd']) + ' | Running total of validated costs USD: ' + str(total_val_usd)
 
     cur.close()
     print 'Cursor closed'
