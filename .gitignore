@@ -10,3 +10,5 @@ Include/*
 .Python
 .gitignore.swp
 bin/*
+lib/*
+local/*
